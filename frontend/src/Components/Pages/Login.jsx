@@ -14,25 +14,31 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if(password == "" || email == "" || role == ""){
+            alert("Fill the credentials");
+            return;
+        }
+
         try {
             const response = await axios.post("http://localhost:3000/api/user/login", {
                 email: email,
                 password: password,
                 role: role,
             });
-            
+
             console.log(response.data);
-localStorage.setItem("token", response.data.token);
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
 
-console.log("Logged in role:", response.data.user.role);
+            console.log("Logged in role:", response.data.user.role);
 
-if (response.data.user.role === "student") {
-    navigate("/studenthome");
-} else if (response.data.user.role === "teacher") {
-    navigate("/teacherhome");
-} else if (response.data.user.role === "admin") {
-    navigate("/adminhome");
-}
+            if (response.data.user.role === "student") {
+                navigate("/studenthome");
+            } else if (response.data.user.role === "teacher") {
+                navigate("/teacherhome");
+            } else if (response.data.user.role === "admin") {
+                navigate("/adminhome");
+            }
 
         } catch (error) {
             console.log(error)

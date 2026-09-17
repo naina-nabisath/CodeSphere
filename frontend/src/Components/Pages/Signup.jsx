@@ -15,6 +15,26 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(role == ""){
+      alert("Specify the role");
+      return;
+    }
+    const namePattern = /^[A-Za-z]+ [A-Za-z]+$/;
+    if (!namePattern.test(name.trim())) { 
+      alert("Please enter your first name and last name"); 
+      return; 
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+    if (!emailPattern.test(email.trim())) { 
+      alert("Please enter a valid email address"); 
+      return; 
+    }
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; 
+    if (!passwordPattern.test(password)) { 
+      alert( "Password must contain at least 8 characters, one capital letter, one number, and one special character" ); 
+      return; 
+    }
     if (password != cpassword) {
       alert("Password do not match");
       return;

@@ -20,15 +20,7 @@ const registerUser = async (req, res) => {
       });
     }
 
-    console.log("Signup password:", JSON.stringify(password));
-
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    console.log("Signup password:", JSON.stringify(password));
-console.log("Signup hash:", hashedPassword);
-
-const testMatch = await bcrypt.compare(password, hashedPassword);
-console.log("Signup immediate compare:", testMatch);
 
     const user = await User.create({
       name,
@@ -37,7 +29,7 @@ console.log("Signup immediate compare:", testMatch);
       role,
     });
 
-    if (user) {
+    if (user) {     //postman
       res.status(201).json({
         id: user._id,
         name: user.name,
@@ -50,6 +42,7 @@ console.log("Signup immediate compare:", testMatch);
         message: "Invalid data",
       });
     }
+
   } catch (error) {
     res.status(500).json({
       message: "Server Error",
@@ -60,6 +53,7 @@ console.log("Signup immediate compare:", testMatch);
   console.log("Name :", name);
   console.log("Email :", email);
   console.log("Role :", role);
+  
 };
 
 const loginUser = async (req, res) => {

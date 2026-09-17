@@ -16,7 +16,6 @@
 }
 
 .logo>h1 {
-    padding-top: 2px;
     font-weight: bolder;
     font-size: xx-large ;
 }
@@ -84,3 +83,4 @@
     font-weight: bolder;
     cursor: pointer;
 }
+
