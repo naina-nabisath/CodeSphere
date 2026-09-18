@@ -23,6 +23,7 @@ app.get("/api/user", (req, res)=>{
 app.use("/api/user",userRouter );
 app.use("/api/category", categoryRouter);
 app.use("/api/course", courseRouter);
+app.use("/api/teacher", userRouter);
 
 
 app.listen(port, ()=>{

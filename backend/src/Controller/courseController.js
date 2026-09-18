@@ -46,4 +46,22 @@ const getCourses = async (req, res) => {
     } 
 };
 
-export { addCourse , getCourses };
+
+const getCourseCount = async (req, res)=>{
+  try{
+    const count = await Course.countDocuments();
+
+    res.status(200).json({
+      count
+    });
+  } catch(error) {
+    res.status(500).json({
+      message: "Server Error",
+      error: error.message
+    })
+  }
+};
+
+
+
+export { addCourse , getCourses, getCourseCount };
