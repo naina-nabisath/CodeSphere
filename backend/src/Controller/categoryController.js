@@ -32,7 +32,7 @@ const addCategory = async (req, res) => {
   }
 };
 
-const getCategories = async (req, res) => {
+const getCategory = async (req, res) => {
   try {
     const categories = await Category.find().sort({ name: 1 });
     res.status(200).json(categories);
@@ -45,4 +45,4 @@ const getCategories = async (req, res) => {
   }
 };
 
-export { addCategory, getCategories };
+export { addCategory, getCategory };
